@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ActorTemplateApp</string>
+    <string name="title_activity_show_projects">ShowProjectsActivity</string>
+</resources>

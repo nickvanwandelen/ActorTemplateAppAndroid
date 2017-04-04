@@ -1,43 +1,46 @@
 package domain;
 
-import java.lang.reflect.Array;
-import java.util.*;
-
 /**
- * Created by Nick on 24-Mar-17.
+ * Created by Nick on 3-4-2017.
  */
 
 public class Actor {
-    private String role, roleDescription;
-    private ArrayList<Roleplayer> roleplayers;
+    private String Description, ID, Name, State;
 
-    public Actor(String r, String rd){
-        roleplayers = new ArrayList<Roleplayer>();
-        this.role = r;
-        this.roleDescription = rd;
+    public Actor(){
+
     }
 
-    public String getRole() {
-        return role;
+
+    public String getDescription() {
+        return Description;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setDescription(String description) {
+        this.Description = description;
     }
 
-    public String getRoleDescription() {
-        return roleDescription;
+    public String getID() {
+        return ID;
     }
 
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public ArrayList<Roleplayer> getRoleplayers() {
-        return roleplayers;
+    public String getName() {
+        return Name;
     }
 
-    public void setRoleplayers(ArrayList<Roleplayer> roleplayers) {
-        this.roleplayers = roleplayers;
+    public void setName(String name) {
+        this.Name = name;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        this.State = state;
     }
 }

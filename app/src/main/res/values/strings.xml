@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ActorTemplateApp</string>
     <string name="title_activity_show_projects">ShowProjectsActivity</string>
+    <string name="sign_in">Sign in</string>
+    <string name="web_client_credential_id">701914376379-jk7hb8n6h0fsf1jaknmuhnbviccri9rb.apps.googleusercontent.com</string>
 </resources>

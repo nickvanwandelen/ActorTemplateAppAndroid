@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        /*if(mFirebaseUser == null){
+        if(mFirebaseUser == null){
             startActivity(new Intent(this, LoginActivity.class));
             finish();
-        }*/
+        }
 
         ((Toolbar)findViewById(R.id.toolbar)).setTitle("Actor Template App");
 

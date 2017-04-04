@@ -15,15 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "701914376379-jk7hb8n6h0fsf1jaknmuhnbviccri9rb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nick.actortemplateapp",
-            "certificate_hash": "7263b14ffd272851992b7bf0711a2e6f2e531ff7"
-          }
+          "client_id": "701914376379-715n676omq2n6mq5090u5cvge1r9s8cg.apps.googleusercontent.com",
+          "client_type": 1
         },
         {
-          "client_id": "701914376379-715n676omq2n6mq5090u5cvge1r9s8cg.apps.googleusercontent.com",
+          "client_id": "701914376379-jk7hb8n6h0fsf1jaknmuhnbviccri9rb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

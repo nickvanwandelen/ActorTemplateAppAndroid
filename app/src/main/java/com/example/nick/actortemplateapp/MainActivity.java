@@ -2,6 +2,8 @@ package com.example.nick.actortemplateapp;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.nick.actortemplateapp.fragments.ProjectDetailFragment;
+import com.example.nick.actortemplateapp.fragments.ProjectMasterFragment;
+import com.example.nick.actortemplateapp.fragments.ProjectMasterFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,51 +26,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import domain.Project;
 
 import static com.example.nick.actortemplateapp.R.layout.activity_main;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ProjectMasterFragment.OnFragmentInteractionListener{
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    private FirebaseDatabase database;
     private DatabaseReference reference;
 
     private ArrayList<Project> projects;
 
-    public MainActivity(){
-        projects = new ArrayList<Project>();
-
-
-
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference();
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("Count", "Amount of projects: " + dataSnapshot.getChildrenCount());
-
-                projects.clear();
-
-                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                    Project retrievedProject = postSnapshot.getValue(Project.class);
-                    projects.add(retrievedProject);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("Reading Firebase", databaseError.getMessage());
-            }
-        });
-
-
-    }
+    private ProjectDetailFragment detailFragment;
+    private String showingProjectKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,37 +56,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }
 
-        ((Toolbar)findViewById(R.id.toolbar)).setTitle("Actor Template App");
+        ((Toolbar)findViewById(R.id.toolbar)).setTitle(R.string.your_projects);
 
-        createProjectButtons();
+        detailFragment = (ProjectDetailFragment)getSupportFragmentManager().findFragmentById(R.id.details_frag);
+        /*
+        projects = new ArrayList<Project>();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("MainActivity:", "Retrieving projects from Firebase");
+                DataSnapshot projectSnapshot = dataSnapshot.child("Projects");
+                Iterable<DataSnapshot> projectsOfUser = projectSnapshot.getChildren();
+
+                for(DataSnapshot retrievedProject : projectsOfUser){
+                    projects.add((Project)retrievedProject.getValue(Project.class));
+                    Log.d("Firebase:", "Added project");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Reading Firebase", databaseError.getMessage());
+            }
+        });
+
+        Log.d("Count:", "Retrieved projects: " + projects.size());
+
+        */
     }
 
-    private void createProjectButtons(){
-        for(Project project: projects){
-            Button button = new Button(this);
-            button.setOnClickListener(this);
-            button.setText(project.getName());
-            button.setBackgroundColor(Color.CYAN);
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            int margin = (int) (20 * this.getResources().getDisplayMetrics().density);
-            params.setMargins(margin, margin, margin, margin);
-            button.setLayoutParams(params);
-
-
-            LinearLayout projectButtons = (LinearLayout)this.findViewById(R.id.allProjects);
-            projectButtons.addView(button);
-        }
-    }
-
-    private void getSavedProjects(){
-        List<Project> allProjects = new ArrayList<Project>();
-
-
-
-
-
-    }
 
     @Override
     public void onClick(View view){
@@ -117,4 +94,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(navigateToProject);
     }
 
+
+    @Override
+    public void onFragmentInteraction(Project project, String key) {
+        detailFragment.setProject(project);
+        showingProjectKey = key;
+    }
 }

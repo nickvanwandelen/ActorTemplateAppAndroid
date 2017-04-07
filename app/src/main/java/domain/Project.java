@@ -15,7 +15,7 @@ public class Project {
         return Description;
     }
 
-    public void setDesrciption(String desciption) {
+    public void setDescription(String desciption) {
         this.Description = desciption;
     }
 

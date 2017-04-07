@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip">
+    <TextView android:layout_marginRight="4dp"
+        android:text="Project Name"
+        android:layout_width="wrap_content"
+        android:id="@+id/projectName"
+        android:layout_height="wrap_content"
+        android:textSize="16dip"
+        android:textStyle="bold"></TextView>
+    <TextView android:text="Description"
+        android:layout_width="wrap_content"
+        android:id="@+id/projectDescription"
+        android:layout_height="wrap_content"
+        android:textSize="14dip"
+        android:layout_alignLeft="@id/projectName"
+        android:layout_below="@id/projectName"></TextView>
+    </RelativeLayout>

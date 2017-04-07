@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ActorTemplateApp.iml" filepath="$PROJECT_DIR$/ActorTemplateApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ActorTemplateAppAndroid.iml" filepath="$PROJECT_DIR$/ActorTemplateAppAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ActorTemplateAppAndroid.iml" filepath="$PROJECT_DIR$/ActorTemplateAppAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

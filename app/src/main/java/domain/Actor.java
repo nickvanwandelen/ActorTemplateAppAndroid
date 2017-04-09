@@ -5,42 +5,43 @@ package domain;
  */
 
 public class Actor {
-    private String Description, ID, Name, State;
+    private String description, name;
+    private boolean active;
+    private String key;
 
     public Actor(){
 
     }
 
-
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        this.Description = description;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
+        this.description = description;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
     }
 
-    public String getState() {
-        return State;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setState(String state) {
-        this.State = state;
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

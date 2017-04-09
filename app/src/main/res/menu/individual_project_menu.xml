@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Edit Project"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/action_addactor"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Add Actor"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/action_archive"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="Archive Project"
+        app:showAsAction="ifRoom"
+        />
+</menu>

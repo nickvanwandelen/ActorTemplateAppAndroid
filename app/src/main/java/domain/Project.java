@@ -5,33 +5,38 @@ package domain;
  */
 
 public class Project {
-    private String Description, ID, Name;
+    private String description, id, name;
+    private boolean active;
 
-    public Project(){
-        
+    public String getDescription() {
+        return description;
     }
 
-    public String getDesrciption() {
-        return Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setDescription(String desciption) {
-        this.Description = desciption;
+    public String getId() {
+        return id;
     }
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

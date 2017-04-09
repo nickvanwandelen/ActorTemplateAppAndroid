@@ -11,9 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="LoginActivity">
-        </activity>
+            android:label="LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -24,16 +23,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShowProjectActivity"
-            android:label="@string/title_activity_show_projects"
+            android:name=".ShowIndividualProject"
+            android:label="@string/title_activity_show_individual_project"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nick.actortemplateapp.MainActivity" />
         </activity>
-
-
     </application>
 
 </manifest>

@@ -1,9 +1,7 @@
 package com.example.nick.actortemplateapp;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -25,26 +23,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import adapter.ActorAdapter;
+import adapter.MemberAdapter;
+import domain.Actor;
 import domain.Project;
 
-public class ShowIndividualProject extends AppCompatActivity {
+public class ShowIndividualActorActivity extends AppCompatActivity {
 
-    private String projectKey;
-    private Project showingProject;
+    private String actorKey;
+    private Actor showingActor;
 
     private DatabaseReference reference;
 
-    private ActorAdapter adapter;
-
     private RecyclerView recyclerView;
+    private MemberAdapter adapter;
 
     private Menu showingMenu;
-    private boolean isEditing = false;
+
+    private boolean isEditing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_individual_project);
+        setContentView(R.layout.activity_show_individual_actor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -52,31 +52,31 @@ public class ShowIndividualProject extends AppCompatActivity {
 
         reference = FirebaseDatabase.getInstance().getReference();
 
-        Intent retrievedIntent = getIntent();
-        projectKey = retrievedIntent.getStringExtra("project_key");
+        Intent recievedIntent = getIntent();
+        actorKey = recievedIntent.getStringExtra("actor_key");
 
-        reference.child("projects").child(projectKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child("actors").child(actorKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showingProject = dataSnapshot.getValue(Project.class); //retrieve selected project object
-                if(showingProject == null){ //validate if selected project exists, if not: return and show error
+                showingActor = dataSnapshot.getValue(Actor.class); //retrieve selected project object
+                if(showingActor == null){ //validate if selected project exists, if not: return and show error
                     Toast.makeText(getApplicationContext(), "Error reading Firebase database: Project not found", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                EditText projectNameET = (EditText) findViewById(R.id.individualProjectName);
-                projectNameET.setText(showingProject.getName());
+                EditText projectNameET = (EditText) findViewById(R.id.individualActorName);
+                projectNameET.setText(showingActor.getName());
                 projectNameET.setEnabled(false);
 
-                EditText projectDescriptionET = (EditText) findViewById(R.id.individualProjectDescription);
-                projectDescriptionET.setText(showingProject.getDescription());
+                EditText projectDescriptionET = (EditText) findViewById(R.id.individualActorDescription);
+                projectDescriptionET.setText(showingActor.getDescription());
                 projectDescriptionET.setEnabled(false);
 
-                ((Toolbar)findViewById(R.id.toolbar)).setTitle("Project: " + showingProject.getName());
+                ((Toolbar)findViewById(R.id.toolbar)).setTitle(showingActor.getName());
 
-                adapter = new ActorAdapter(projectKey);
+                adapter = new MemberAdapter(actorKey);
 
-                recyclerView = (RecyclerView) findViewById(R.id.actorRecyclerView);
+                recyclerView = (RecyclerView) findViewById(R.id.memberRecyclerView);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -94,7 +94,7 @@ public class ShowIndividualProject extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu){
-        getMenuInflater().inflate(R.menu.individual_project_menu, menu);
+        getMenuInflater().inflate(R.menu.individual_actor_menu, menu);
         showingMenu = menu;
         String loggedInUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -122,14 +122,14 @@ public class ShowIndividualProject extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
-            case R.id.action_addactor:
-                handleAddActor();
+            case R.id.actor_menu_action_addmember:
+                handleAddMember();
                 return true;
-            case R.id.action_edit:
-                handleEditProject();
+            case R.id.actor_menu_action_edit:
+                handleEditActor();
                 return true;
-            case R.id.action_archive:
-                handleArchiveProject();
+            case R.id.actor_menu_action_archive:
+                handleArchiveActor();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -137,34 +137,32 @@ public class ShowIndividualProject extends AppCompatActivity {
         }
     }
 
-    private void handleAddActor(){
-        Intent intent = new Intent(this, AddActorActivity.class);
-        intent.putExtra("project_key", projectKey);
+    private void handleAddMember(){
+        Intent intent = new Intent(this, AddMemberActivity.class);
+        intent.putExtra("actor_key", actorKey);
         startActivity(intent);
     }
 
-    private void handleEditProject(){
+    private void handleEditActor(){
         showingMenu.getItem(1).setVisible(isEditing);
         showingMenu.getItem(2).setVisible(isEditing);
 
-        EditText projectNameET = (EditText) findViewById(R.id.individualProjectName);
-        EditText projectDescET = (EditText) findViewById(R.id.individualProjectDescription);
+        EditText projectNameET = (EditText) findViewById(R.id.individualActorName);
+        EditText projectDescET = (EditText) findViewById(R.id.individualActorDescription);
         projectNameET.setEnabled(!isEditing);
         projectDescET.setEnabled(!isEditing);
 
         if(isEditing){
-            reference.child("projects").child(projectKey).child("name").setValue(projectNameET.getText().toString());
-            reference.child("projects").child(projectKey).child("description").setValue(projectDescET.getText().toString());
+            reference.child("actors").child(actorKey).child("name").setValue(projectNameET.getText().toString());
+            reference.child("actors").child(actorKey).child("description").setValue(projectDescET.getText().toString());
         }
 
         isEditing = !isEditing;
     }
 
-    private void handleArchiveProject(){
-        reference.child("projects").child(projectKey).child("active").setValue(false);
+    private void handleArchiveActor(){
+        reference.child("actors").child(actorKey).child("active").setValue(false);
         finish();
     }
-
-
 
 }

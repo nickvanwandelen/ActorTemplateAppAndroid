@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.nick.actortemplateapp.ShowIndividualMemberActivity"
+    tools:showIn="@layout/activity_show_individual_member">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/showMember_image"
+            android:src="@drawable/default_member_photo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_image"
+            android:id="@+id/showMember_emailTextView"
+            android:text="Email"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_emailTextView"
+            android:id="@+id/showMember_emailEditText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_emailEditText"
+            android:id="@+id/showMember_nameTextView"
+            android:text="Full name"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/showMember_nameTextView"
+            android:id="@+id/showMember_nameEditText" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_nameEditText"
+            android:id="@+id/showMember_phoneTextView"
+            android:text="Phone"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_phoneTextView"
+            android:id="@+id/showMember_phoneEditText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_phoneEditText"
+            android:id="@+id/showMember_roleTextView"
+            android:text="Role"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_roleTextView"
+            android:id="@+id/showMember_roleEditText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_roleEditText"
+            android:id="@+id/showMember_notesTextView"
+            android:text="Notes"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showMember_notesTextView"
+            android:id="@+id/showMember_notesEditText"
+            android:lines="5"/>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

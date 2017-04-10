@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/actor_menu_action_edit"
         android:icon="@drawable/icon_edit"
         android:title="Edit Project"
         app:showAsAction="ifRoom"
         />
 
     <item
-        android:id="@+id/action_addactor"
+        android:id="@+id/actor_menu_action_addmember"
         android:icon="@drawable/icon_add"
-        android:title="Add Actor"
+        android:title="Add Member"
         app:showAsAction="ifRoom"
         />
 
     <item
-        android:id="@+id/action_archive"
+        android:id="@+id/actor_menu_action_archive"
         android:icon="@drawable/icon_archive"
-        android:title="Archive Project"
+        android:title="Archive Actor"
         app:showAsAction="ifRoom"
         />
 </menu>

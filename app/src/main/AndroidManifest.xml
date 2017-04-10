@@ -12,7 +12,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -25,11 +25,52 @@
         <activity
             android:name=".ShowIndividualProject"
             android:label="@string/title_activity_show_individual_project"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nick.actortemplateapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddActorActivity"
+            android:label="@string/title_activity_add_actor"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ShowIndividualProject"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nick.actortemplateapp.ShowIndividualProject" />
+        </activity>
+        <activity
+            android:name=".ShowIndividualActorActivity"
+            android:label="@string/title_activity_show_individual_actor"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ShowIndividualProject"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nick.actortemplateapp.ShowIndividualProject" />
+        </activity>
+        <activity
+            android:name=".AddMemberActivity"
+            android:label="@string/title_activity_add_member"
+            android:parentActivityName=".ShowIndividualActorActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nick.actortemplateapp.ShowIndividualActorActivity" />
+        </activity>
+        <activity
+            android:name=".ShowIndividualMemberActivity"
+            android:label="@string/title_activity_show_individual_member"
+            android:parentActivityName=".ShowIndividualActorActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nick.actortemplateapp.ShowIndividualActorActivity" />
         </activity>
     </application>
 

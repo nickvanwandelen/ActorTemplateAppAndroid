@@ -1,10 +1,12 @@
 package adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.nick.actortemplateapp.R;
+import com.example.nick.actortemplateapp.ShowIndividualActorActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -17,7 +19,7 @@ import domain.Actor;
 public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.MyViewHolder>{
 
     public ActorAdapter(String projectKey){
-        super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors").child("projects").equalTo(projectKey));
+        super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors"));
     }
 
     @Override
@@ -42,7 +44,9 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
 
         @Override
         public void onClick(View view){
-
+            Intent intent = new Intent(view.getContext(), ShowIndividualActorActivity.class);
+            intent.putExtra("actor_key", actorKey);
+            view.getContext().startActivity(intent);
         }
     }
 }

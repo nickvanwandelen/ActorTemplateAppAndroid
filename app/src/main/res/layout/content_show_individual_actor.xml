@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.nick.actortemplateapp.ShowIndividualProject"
-    tools:showIn="@layout/activity_show_individual_project">
+    tools:context="com.example.nick.actortemplateapp.ShowIndividualActorActivity"
+    tools:showIn="@layout/activity_show_individual_actor">
 
     <RelativeLayout
         android:layout_width="368dp"
@@ -16,37 +16,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/individualProjectNameTextView"
-            android:text="Project Name" />
+            android:id="@+id/individualActorNameTextView"
+            android:text="Actor Name"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/individualProjectName"
-            android:layout_below="@id/individualProjectNameTextView"/>
+            android:layout_below="@id/individualActorNameTextView"
+            android:id="@+id/individualActorName" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Project Description"
-            android:layout_below="@+id/individualProjectName"/>
+            android:layout_below="@id/individualActorName"
+            android:id="@+id/individualActorDescriptionTextView"
+            android:text="Actor Description"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/individualProjectDescription"
-            android:layout_below="@+id/individualProjectName"
+            android:id="@+id/individualActorDescription"
+            android:layout_below="@+id/individualActorDescriptionTextView"
             android:lines="5"/>
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/individualProjectDescription"
-            android:id="@+id/individualProjectActorsTextView"
-            android:text="Actors of this project:"/>
+            android:id="@+id/individualActorMembersTextView"
+            android:layout_below="@id/individualActorDescription"
+            android:text="Members of this actor:"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/actorRecyclerView"
-            android:layout_below="@+id/individualProjectActorsTextView"/>
+            android:id="@+id/memberRecyclerView"
+            android:layout_below="@+id/individualActorMembersTextView"/>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

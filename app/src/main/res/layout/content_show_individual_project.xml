@@ -9,10 +9,12 @@
     tools:showIn="@layout/activity_show_individual_project">
 
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,13 +28,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/individualProjectDescriptionTextView"
             android:text="Project Description"
             android:layout_below="@+id/individualProjectName"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/individualProjectDescription"
-            android:layout_below="@+id/individualProjectName"
+            android:layout_below="@+id/individualProjectDescriptionTextView"
             android:lines="5"/>
 
 
@@ -43,7 +46,7 @@
             android:id="@+id/individualProjectActorsTextView"
             android:text="Actors of this project:"/>
         <android.support.v7.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/actorRecyclerView"
             android:layout_below="@+id/individualProjectActorsTextView"/>

@@ -2,6 +2,7 @@ package adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,7 +20,8 @@ import domain.Actor;
 public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.MyViewHolder>{
 
     public ActorAdapter(String projectKey){
-        super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors"));
+        super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors").orderByChild("projectID").equalTo(projectKey));
+        Log.e("Key: ",  projectKey);
     }
 
     @Override
@@ -28,6 +30,7 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
         viewHolder.actorDescription.setText(actor.getDescription());
         viewHolder.actor = actor;
         viewHolder.actorKey = getRef(position).getKey();
+        viewHolder.checkActive();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -35,11 +38,20 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
         public Actor actor;
         public String actorKey;
 
+        public View actorView;
+
         public MyViewHolder(View view){
             super(view);
+            actorView = view;
             actorName = (TextView) view.findViewById(R.id.actorName);
             actorDescription = (TextView) view.findViewById(R.id.actorDescription);
             view.setOnClickListener(this);
+        }
+
+        public void checkActive(){ //check if actor is active, if false: make view invisible
+            if(!actor.isActive()){
+                actorView.setVisibility(View.GONE);
+            }
         }
 
         @Override

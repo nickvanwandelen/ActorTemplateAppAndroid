@@ -58,7 +58,7 @@ public class AddMemberActivity extends AppCompatActivity {
         reference.child("members").child(testID).child("phone").setValue(((EditText)findViewById(R.id.addMember_phoneEditText)).getText().toString());
         reference.child("members").child(testID).child("picture").setValue(""); //TODO
         reference.child("members").child(testID).child("role").setValue(((EditText)findViewById(R.id.addMember_roleEditText)).getText().toString());
-        reference.child("members").child(testID).child("actors").child(actorKey).setValue(true);
+        reference.child("members").child(testID).child("actorID").setValue(actorKey);
 
         finish();
     }

@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_red_light"
+    android:layout_marginTop="10dp"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:textSize="16dip"
+        android:textStyle="bold"
+        android:text="Actor name"
         android:id="@+id/actorName" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/actorName"
+        android:layout_below="@id/actorName"
+        android:textSize="14dip"
+        android:text="Actor Description"
         android:id="@+id/actorDescription"/>
-</LinearLayout>
+</RelativeLayout>

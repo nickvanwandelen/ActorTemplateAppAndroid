@@ -104,6 +104,7 @@ public class ShowIndividualActorActivity extends AppCompatActivity {
                 boolean analistDb = dataSnapshot.getValue(boolean.class);
 
                 if(!analistDb){
+                    menu.getItem(0).setVisible(false);
                     menu.getItem(1).setVisible(false);
                     menu.getItem(2).setVisible(false);
                 }

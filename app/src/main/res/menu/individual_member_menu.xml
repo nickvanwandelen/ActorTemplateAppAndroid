@@ -7,4 +7,10 @@
         android:title="Edit Member"
         app:showAsAction="ifRoom"
         />
+    <item
+        android:id="@+id/member_menu_change_picture"
+        android:icon="@drawable/icon_camera"
+        android:title="Edit Member"
+        app:showAsAction="ifRoom"
+        />
 </menu>

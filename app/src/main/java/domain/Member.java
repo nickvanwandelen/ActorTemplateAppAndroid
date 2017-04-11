@@ -5,7 +5,7 @@ package domain;
  */
 
 public class Member {
-    private String Email, ID, Name, Notes, Phone, Role, photoUrl;
+    private String Email, ID, Name, Notes, Phone, Role, Picture;
 
     public Member(){
 
@@ -59,11 +59,9 @@ public class Member {
         this.Role = role;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getPicture() {
+        return Picture;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
+    public void setPicture(String picture) { this.Picture = picture; }
 }

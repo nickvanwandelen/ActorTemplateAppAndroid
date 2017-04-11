@@ -25,11 +25,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:id="@+id/mainactivity_loggedInUserTextView"
+            android:text="Logged in user"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:scrollbars="vertical"
             android:id="@+id/project_recycler_view"/>
 

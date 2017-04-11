@@ -81,8 +81,6 @@ public class ShowIndividualProject extends AppCompatActivity {
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(adapter);
-
-
             }
 
             @Override
@@ -104,6 +102,7 @@ public class ShowIndividualProject extends AppCompatActivity {
                 boolean analistDb = dataSnapshot.getValue(boolean.class);
 
                 if(!analistDb){
+                    menu.getItem(0).setVisible(false);
                     menu.getItem(1).setVisible(false);
                     menu.getItem(2).setVisible(false);
                 }

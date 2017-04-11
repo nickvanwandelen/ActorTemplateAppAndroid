@@ -5,13 +5,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import domain.Actor;
 
 public class AddActorActivity extends AppCompatActivity {
 
@@ -42,22 +49,41 @@ public class AddActorActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.action_addActor:
                 handleAddActor();
+                return true;
             case R.id.action_cancel:
                 handleCancel();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     private void handleAddActor(){
-        String testID = "TestActor";
+        if(((EditText)findViewById(R.id.addActorNameEditText)).getText().toString().equals("") ||
+                ((EditText)findViewById(R.id.addActorDescriptionEditText)).getText().toString().equals("")   ){
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            reference.child("actors").orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String latestAddedActorKey = dataSnapshot.getValue(Actor.class).getKey();
+                    String newActorID = "actor" + (Integer.parseInt(latestAddedActorKey.replaceAll("[^0-9]", "")));
 
-        reference.child("actors").child(testID).child("name").setValue(((EditText)findViewById(R.id.addActorNameEditText)).getText().toString());
-        reference.child("actors").child(testID).child("description").setValue(((EditText)findViewById(R.id.addActorDescriptionEditText)).getText().toString());
-        reference.child("actors").child(testID).child("active").setValue(true);
-        reference.child("actors").child(testID).child("projects").child(projectKey).setValue(true);
+                    reference.child("actors").child(newActorID).child("name").setValue(((EditText)findViewById(R.id.addActorNameEditText)).getText().toString());
+                    reference.child("actors").child(newActorID).child("description").setValue(((EditText)findViewById(R.id.addActorDescriptionEditText)).getText().toString());
+                    reference.child("actors").child(newActorID).child("active").setValue(true);
+                    reference.child("actors").child(newActorID).child("projectID").setValue(projectKey);
 
-        finish();
+                    finish();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     private void handleCancel(){

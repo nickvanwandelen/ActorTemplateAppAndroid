@@ -9,8 +9,9 @@
     tools:showIn="@layout/activity_show_individual_actor">
 
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
         <TextView
@@ -43,7 +44,7 @@
             android:layout_below="@id/individualActorDescription"
             android:text="Members of this actor:"/>
         <android.support.v7.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/memberRecyclerView"
             android:layout_below="@+id/individualActorMembersTextView"/>

@@ -20,8 +20,8 @@ import domain.Member;
 
 public class MemberAdapter extends FirebaseRecyclerAdapter<Member, MemberAdapter.ViewHolder> {
 
-    public MemberAdapter(String projectKey){
-        super(Member.class, R.layout.member_row, MemberAdapter.ViewHolder.class, FirebaseDatabase.getInstance().getReference().child("members"));
+    public MemberAdapter(String actorKey){
+        super(Member.class, R.layout.member_row, MemberAdapter.ViewHolder.class, FirebaseDatabase.getInstance().getReference().child("members").orderByChild("actorID").equalTo(actorKey));
     }
 
     @Override
@@ -43,6 +43,7 @@ public class MemberAdapter extends FirebaseRecyclerAdapter<Member, MemberAdapter
             memberRole = (TextView) view.findViewById(R.id.member_recyclerview_memberRole);
             view.setOnClickListener(this);
         }
+
 
         @Override
         public void onClick(View view){

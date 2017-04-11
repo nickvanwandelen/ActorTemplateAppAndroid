@@ -1,15 +1,21 @@
 package com.example.nick.actortemplateapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+
 import domain.Member;
+import task.ImageHelper;
 
 public class ShowIndividualMemberActivity extends AppCompatActivity {
 
@@ -32,6 +41,10 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
 
     private boolean isEditing = false;
 
+    private ImageHelper imageHelper;
+
+    private ImageView memberPicture;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +54,7 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         reference = FirebaseDatabase.getInstance().getReference();
+        imageHelper = new ImageHelper();
 
         Intent retrievedIntent = getIntent();
         memberKey = retrievedIntent.getStringExtra("member_key");
@@ -74,6 +88,10 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
                 memberRoleET.setText(showingMember.getRole());
                 memberRoleET.setEnabled(false);
 
+                memberPicture = (ImageView) findViewById(R.id.showMember_image);
+                memberPicture.setImageBitmap(imageHelper.convertPhotoStringToImage(showingMember.getPicture()));
+                Log.e("Picture: " , showingMember.getPicture());
+
                 ((Toolbar)findViewById(R.id.toolbar)).setTitle(showingMember.getName());
             }
 
@@ -97,6 +115,7 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
 
                 if(!isAnalist){
                     menu.getItem(0).setVisible(false);
+                    menu.getItem(1).setVisible(false);
                 }
             }
 
@@ -115,6 +134,8 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
             case R.id.member_menu_action_edit:
                 handleEditMember();
                 return true;
+            case R.id.member_menu_change_picture:
+                handleChangePicture();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -133,6 +154,8 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
         memberPhoneET.setEnabled(!isEditing);
         memberRoleET.setEnabled(!isEditing);
 
+        showingMenu.getItem(1).setVisible(isEditing);
+
         if(isEditing){
             reference.child("members").child(memberKey).child("email").setValue(memberEmailET.getText().toString());
             reference.child("members").child(memberKey).child("name").setValue(memberNameET.getText().toString());
@@ -142,6 +165,37 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
         }
 
         isEditing = !isEditing;
+    }
+
+    private void handleChangePicture(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+
+        Intent toPhoneGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        toPhoneGalleryIntent.setType("image/*");
+
+        startActivityForResult(toPhoneGalleryIntent, 999);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 999 && resultCode == Activity.RESULT_OK){
+            if(data == null){
+                Log.e("ChangePicture:", "Unkown intent, data is null");
+                return;
+            }
+
+            try{
+                Bitmap selectedImage = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                memberPicture.setImageBitmap(selectedImage);
+                reference.child("members").child(memberKey).child("picture").setValue(imageHelper.convertImageToPhotoString(new BitmapDrawable(getResources(), selectedImage)));
+            }
+            catch(IOException exception){
+                Log.e("ChangePicture: ", "Error while retrieving bitmap: " + exception.getStackTrace());
+            }
+        }
     }
 
 }

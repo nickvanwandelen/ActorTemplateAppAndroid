@@ -89,8 +89,10 @@ public class ShowIndividualMemberActivity extends AppCompatActivity {
                 memberRoleET.setEnabled(false);
 
                 memberPicture = (ImageView) findViewById(R.id.showMember_image);
-                memberPicture.setImageBitmap(imageHelper.convertPhotoStringToImage(showingMember.getPicture()));
-                Log.e("Picture: " , showingMember.getPicture());
+                if(!showingMember.getPicture().equals("")){
+                    memberPicture.setImageBitmap(imageHelper.convertPhotoStringToImage(showingMember.getPicture()));
+                }
+
 
                 ((Toolbar)findViewById(R.id.toolbar)).setTitle(showingMember.getName());
             }

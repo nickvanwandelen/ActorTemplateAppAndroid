@@ -25,10 +25,8 @@ public class ImageHelper {
 
     public Bitmap convertPhotoStringToImage(String pictureString){
         String transformedPictureString = pictureString.replace("data:image/jpeg;base64,", "");
-        Log.e("STRING:", "something" + pictureString);
 
         byte[] byteArray = Base64.decode(transformedPictureString, Base64.DEFAULT);
-        Log.e("COUNT:" , "Length of byte array: " + byteArray.length);
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         return bitmap;
     }

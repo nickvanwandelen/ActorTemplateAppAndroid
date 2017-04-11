@@ -21,7 +21,7 @@ import domain.Member;
 public class MemberAdapter extends FirebaseRecyclerAdapter<Member, MemberAdapter.ViewHolder> {
 
     public MemberAdapter(String actorKey){
-        super(Member.class, R.layout.member_row, MemberAdapter.ViewHolder.class, FirebaseDatabase.getInstance().getReference().child("members").orderByChild("actorID").equalTo(actorKey));
+        super(Member.class, R.layout.member_row, MemberAdapter.ViewHolder.class, FirebaseDatabase.getInstance().getReference().child("members").orderByChild("actorID").equalTo(Integer.parseInt(actorKey)));
     }
 
     @Override

@@ -20,7 +20,7 @@ import domain.Actor;
 public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.MyViewHolder>{
 
     public ActorAdapter(String projectKey){
-        super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors").orderByChild("projectID").equalTo(projectKey));
+        super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors").orderByChild("projectID").equalTo(Integer.parseInt(projectKey)));
         Log.e("Key: ",  projectKey);
     }
 
@@ -50,7 +50,7 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
 
         public void checkActive(){ //check if actor is active, if false: make view invisible
             if(!actor.isActive()){
-                actorView.setVisibility(View.GONE);
+                actorView.getLayoutParams().height = 0;
             }
         }
 

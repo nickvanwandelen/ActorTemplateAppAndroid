@@ -50,9 +50,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             finish();
         }
 
-        TextView loggedInAsTextView = (TextView) findViewById(R.id.mainactivity_loggedInUserTextView);
-        loggedInAsTextView.setText("You are logged in as:\n" + FirebaseAuth.getInstance().getCurrentUser().getEmail());
-
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API).build();
 
         recyclerView = (RecyclerView) findViewById(R.id.project_recycler_view);
@@ -61,6 +58,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        TextView loggedInAsTextView = (TextView) findViewById(R.id.mainactivity_loggedInUserTextView);
+
+        if(mFirebaseUser != null){
+            loggedInAsTextView.setText("You are logged in as:\n" + FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        }
+
     }
 
     @Override

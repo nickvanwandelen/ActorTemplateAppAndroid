@@ -67,13 +67,17 @@ public class AddActorActivity extends AppCompatActivity {
             reference.child("actors").orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    String latestAddedActorKey = dataSnapshot.getValue(Actor.class).getKey();
-                    String newActorID = "actor" + (Integer.parseInt(latestAddedActorKey.replaceAll("[^0-9]", "")));
+                    int newActorID = 0;
 
-                    reference.child("actors").child(newActorID).child("name").setValue(((EditText)findViewById(R.id.addActorNameEditText)).getText().toString());
-                    reference.child("actors").child(newActorID).child("description").setValue(((EditText)findViewById(R.id.addActorDescriptionEditText)).getText().toString());
-                    reference.child("actors").child(newActorID).child("active").setValue(true);
-                    reference.child("actors").child(newActorID).child("projectID").setValue(projectKey);
+                    for(DataSnapshot actor : dataSnapshot.getChildren()) {
+                        newActorID = Integer.parseInt(actor.getKey());
+                        newActorID++;
+                    }
+
+                    reference.child("actors").child("" + newActorID).child("name").setValue(((EditText)findViewById(R.id.addActorNameEditText)).getText().toString());
+                    reference.child("actors").child("" + newActorID).child("description").setValue(((EditText)findViewById(R.id.addActorDescriptionEditText)).getText().toString());
+                    reference.child("actors").child("" + newActorID).child("active").setValue(true);
+                    reference.child("actors").child("" + newActorID).child("projectID").setValue(Integer.parseInt(projectKey));
 
                     finish();
                 }

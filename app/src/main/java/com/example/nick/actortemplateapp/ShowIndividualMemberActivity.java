@@ -1,6 +1,5 @@
 package com.example.nick.actortemplateapp;
 
-import android.*;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,8 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
-import java.security.acl.Permission;
 
 import domain.Member;
 import task.ImageHelper;

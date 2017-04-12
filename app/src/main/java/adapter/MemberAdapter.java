@@ -3,7 +3,6 @@ package adapter;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.example.nick.actortemplateapp.R;
@@ -11,7 +10,6 @@ import com.example.nick.actortemplateapp.ShowIndividualMemberActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
-import domain.Actor;
 import domain.Member;
 
 /**

@@ -16,35 +16,50 @@
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:id="@+id/individualProjectNameTextView"
+            android:textAlignment="center"
             android:text="Project Name" />
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="top|center"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
             android:id="@+id/individualProjectName"
-            android:layout_below="@id/individualProjectNameTextView"/>
+            android:layout_below="@id/individualProjectNameTextView"
+            android:text="Project Name"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:id="@+id/individualProjectDescriptionTextView"
+            android:textAlignment="center"
             android:text="Project Description"
             android:layout_below="@+id/individualProjectName"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="top|center"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
             android:id="@+id/individualProjectDescription"
             android:layout_below="@+id/individualProjectDescriptionTextView"
-            android:lines="5"/>
+            android:lines="5"
+            android:text="Project Description"/>
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/individualProjectDescription"
             android:id="@+id/individualProjectActorsTextView"
-            android:text="Actors of this project:"/>
+            android:textAlignment="center"
+            android:text="Actors of this project:" />
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

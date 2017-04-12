@@ -1,6 +1,7 @@
 package com.example.nick.actortemplateapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -30,6 +31,7 @@ import domain.Project;
 public class ShowIndividualProject extends AppCompatActivity {
 
     private String projectKey;
+    private String projectName;
     private Project showingProject;
 
     private DatabaseReference reference;
@@ -40,6 +42,8 @@ public class ShowIndividualProject extends AppCompatActivity {
 
     private Menu showingMenu;
     private boolean isEditing = false;
+
+    private Drawable defaultEditTextBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,8 @@ public class ShowIndividualProject extends AppCompatActivity {
                     return;
                 }
 
+                projectName = showingProject.getName();
+
                 EditText projectNameET = (EditText) findViewById(R.id.individualProjectName);
                 projectNameET.setText(showingProject.getName());
                 projectNameET.setEnabled(false);
@@ -72,9 +78,11 @@ public class ShowIndividualProject extends AppCompatActivity {
                 projectDescriptionET.setText(showingProject.getDescription());
                 projectDescriptionET.setEnabled(false);
 
-                ((Toolbar)findViewById(R.id.toolbar)).setTitle("Project: " + showingProject.getName());
+                defaultEditTextBackground = projectDescriptionET.getBackground();
 
-                adapter = new ActorAdapter(projectKey);
+                ((Toolbar)findViewById(R.id.toolbar)).setTitle(showingProject.getName());
+
+                adapter = new ActorAdapter(projectKey, showingProject.getName());
 
                 recyclerView = (RecyclerView) findViewById(R.id.actorRecyclerView);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -139,6 +147,7 @@ public class ShowIndividualProject extends AppCompatActivity {
     private void handleAddActor(){
         Intent intent = new Intent(this, AddActorActivity.class);
         intent.putExtra("project_key", projectKey);
+        intent.putExtra("project_name", projectName);
         startActivity(intent);
     }
 
@@ -152,8 +161,29 @@ public class ShowIndividualProject extends AppCompatActivity {
         projectDescET.setEnabled(!isEditing);
 
         if(isEditing){
+            if(projectNameET.getText().toString().equals("") || projectDescET.getText().toString().equals("")){
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+                showingMenu.getItem(1).setVisible(!isEditing);
+                showingMenu.getItem(2).setVisible(!isEditing);
+                projectNameET.setEnabled(isEditing);
+                projectDescET.setEnabled(isEditing);
+                return;
+            }
+
             reference.child("projects").child(projectKey).child("name").setValue(projectNameET.getText().toString());
             reference.child("projects").child(projectKey).child("description").setValue(projectDescET.getText().toString());
+
+            showingProject.setName(projectNameET.getText().toString());
+            showingProject.setDescription(projectDescET.getText().toString());
+
+            ((Toolbar)findViewById(R.id.toolbar)).setTitle(projectNameET.getText().toString());
+
+            projectNameET.setBackgroundResource(android.R.color.transparent);
+            projectDescET.setBackgroundResource(android.R.color.transparent);
+        }
+        else{
+            projectNameET.setBackgroundResource(android.R.drawable.edit_text);
+            projectDescET.setBackgroundResource(android.R.drawable.edit_text);
         }
 
         isEditing = !isEditing;

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +24,7 @@ import domain.Actor;
 public class AddActorActivity extends AppCompatActivity {
 
     private String projectKey;
+    private String projectName;
 
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -35,6 +37,9 @@ public class AddActorActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         projectKey = getIntent().getStringExtra("project_key");
+        projectName = getIntent().getStringExtra("project_name");
+
+        ((TextView) findViewById(R.id.addActor_projectTextView)).setText("Adding actor for project: " + projectName);
     }
 
     @Override

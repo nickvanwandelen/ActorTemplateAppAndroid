@@ -15,37 +15,64 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/individualActorNameTextView"
-            android:text="Actor Name"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/individualActorNameTextView"
-            android:id="@+id/individualActorName" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/individualActorName"
-            android:id="@+id/individualActorDescriptionTextView"
-            android:text="Actor Description"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/individualActorDescription"
-            android:layout_below="@+id/individualActorDescriptionTextView"
-            android:lines="5"/>
+            android:id="@+id/showActor_ProjectTextView"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"
+            android:background="@android:color/holo_red_light"
+            android:textAlignment="center"
+            android:text="Actor belongs to project:   "/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/showActor_ProjectTextView"
+            android:id="@+id/individualActorNameTextView"
+            android:textAlignment="center"
+            android:text="Actor Name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/individualActorNameTextView"
+            android:layout_margin="5dp"
+            android:gravity="top|center"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:id="@+id/individualActorName"
+            android:text="Actor name"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/individualActorName"
+            android:layout_marginTop="5dp"
+            android:id="@+id/individualActorDescriptionTextView"
+            android:textAlignment="center"
+            android:text="Actor Description"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="top|center"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:id="@+id/individualActorDescription"
+            android:layout_below="@+id/individualActorDescriptionTextView"
+            android:scrollbars="vertical"
+            android:lines="5"
+            android:text="Actor description"/>
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/individualActorMembersTextView"
             android:layout_below="@id/individualActorDescription"
+            android:textAlignment="center"
             android:text="Members of this actor:"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/memberRecyclerView"
             android:layout_below="@+id/individualActorMembersTextView"/>
     </RelativeLayout>

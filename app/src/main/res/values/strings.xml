@@ -11,8 +11,8 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_show_individual_project">ShowIndividualProject</string>
-    <string name="title_activity_add_actor">Adding new Actor</string>
+    <string name="title_activity_add_actor">Add new Actor</string>
     <string name="title_activity_show_individual_actor">ShowIndividualActorActivity</string>
-    <string name="title_activity_add_member">AddMemberActivity</string>
+    <string name="title_activity_add_member">Add new Member</string>
     <string name="title_activity_show_individual_member">ShowIndividualMemberActivity</string>
 </resources>

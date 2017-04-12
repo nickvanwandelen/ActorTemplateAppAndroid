@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AddMemberActivity extends AppCompatActivity {
 
     private String actorKey;
+
     private DatabaseReference reference;
 
     @Override
@@ -31,6 +33,9 @@ public class AddMemberActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         actorKey = getIntent().getStringExtra("actor_key");
+
+        ((TextView)findViewById(R.id.addMember_actorTextView)).setText("Adding member for actor: " + getIntent().getStringExtra("actor_name"));
+
         reference = FirebaseDatabase.getInstance().getReference();
     }
 

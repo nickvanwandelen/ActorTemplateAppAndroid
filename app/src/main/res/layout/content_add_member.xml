@@ -11,62 +11,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="10dp"
+        android:background="@android:color/holo_green_light"
+        android:textAlignment="center"
+        android:text="Adding member for actor:  "
+        android:id="@+id/addMember_actorTextView"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/addMember_nameTextView"
+        android:textAlignment="center"
         android:text="Full name"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_nameEditText"
+        android:textAlignment="center"
         android:hint="Full name of the member"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_emailTextView"
+        android:textAlignment="center"
         android:text="Email address"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_emailEditText"
+        android:textAlignment="center"
         android:hint="Email address of the member"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_phoneTextView"
+        android:textAlignment="center"
         android:text="Phone number"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_phoneEditText"
+        android:textAlignment="center"
         android:hint="Phone number of the member"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_roleTextView"
+        android:textAlignment="center"
         android:text="Role"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_roleEditText"
+        android:textAlignment="center"
         android:hint="Role of the member"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_notesTextView"
+        android:textAlignment="center"
         android:text="Relevant notes"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addMember_notesEditText"
+        android:gravity="top|center"
         android:hint="Relevant notes that describe the member"
         android:lines="5"/>
 

@@ -19,9 +19,11 @@ import domain.Actor;
 
 public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.MyViewHolder>{
 
-    public ActorAdapter(String projectKey){
+    private String nameOfProject;
+
+    public ActorAdapter(String projectKey, String projectName){
         super(Actor.class, R.layout.actor_row, MyViewHolder.class, FirebaseDatabase.getInstance().getReference().child("actors").orderByChild("projectID").equalTo(Integer.parseInt(projectKey)));
-        Log.e("Key: ",  projectKey);
+        nameOfProject = projectName;
     }
 
     @Override
@@ -30,6 +32,7 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
         viewHolder.actorDescription.setText(actor.getDescription());
         viewHolder.actor = actor;
         viewHolder.actorKey = getRef(position).getKey();
+        viewHolder.projectName = nameOfProject;
         viewHolder.checkActive();
     }
 
@@ -37,6 +40,7 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
         public TextView actorName, actorDescription;
         public Actor actor;
         public String actorKey;
+        public String projectName;
 
         public View actorView;
 
@@ -58,6 +62,7 @@ public class ActorAdapter extends FirebaseRecyclerAdapter<Actor, ActorAdapter.My
         public void onClick(View view){
             Intent intent = new Intent(view.getContext(), ShowIndividualActorActivity.class);
             intent.putExtra("actor_key", actorKey);
+            intent.putExtra("project_name", projectName);
             view.getContext().startActivity(intent);
         }
     }

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ import domain.Project;
 public class ShowIndividualActorActivity extends AppCompatActivity {
 
     private String actorKey;
+    private String actorName;
     private Actor showingActor;
 
     private DatabaseReference reference;
@@ -64,6 +66,8 @@ public class ShowIndividualActorActivity extends AppCompatActivity {
                     return;
                 }
 
+                actorName = showingActor.getName();
+
                 EditText projectNameET = (EditText) findViewById(R.id.individualActorName);
                 projectNameET.setText(showingActor.getName());
                 projectNameET.setEnabled(false);
@@ -73,8 +77,9 @@ public class ShowIndividualActorActivity extends AppCompatActivity {
                 projectDescriptionET.setEnabled(false);
 
                 ((Toolbar)findViewById(R.id.toolbar)).setTitle(showingActor.getName());
+                ((TextView)findViewById(R.id.showActor_ProjectTextView)).setText("Actor belongs to Project: " + getIntent().getStringExtra("project_name"));
 
-                adapter = new MemberAdapter(actorKey);
+                adapter = new MemberAdapter(actorKey, showingActor.getName());
 
                 recyclerView = (RecyclerView) findViewById(R.id.memberRecyclerView);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -98,7 +103,7 @@ public class ShowIndividualActorActivity extends AppCompatActivity {
         showingMenu = menu;
         String loggedInUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        reference.child("users").child(loggedInUserUid).child("isAnalist").addListenerForSingleValueEvent(new ValueEventListener() { //Validate that logged in user is Analist, if not: disable addActor and archiveProject buttons
+        reference.child("users").child(loggedInUserUid).child("isAnalist").addValueEventListener(new ValueEventListener() { //Validate that logged in user is Analist, if not: disable addActor and archiveProject buttons
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean analistDb = dataSnapshot.getValue(boolean.class);
@@ -141,6 +146,7 @@ public class ShowIndividualActorActivity extends AppCompatActivity {
     private void handleAddMember(){
         Intent intent = new Intent(this, AddMemberActivity.class);
         intent.putExtra("actor_key", actorKey);
+        intent.putExtra("actor_name", actorName);
         startActivity(intent);
     }
 
@@ -148,14 +154,32 @@ public class ShowIndividualActorActivity extends AppCompatActivity {
         showingMenu.getItem(1).setVisible(isEditing);
         showingMenu.getItem(2).setVisible(isEditing);
 
-        EditText projectNameET = (EditText) findViewById(R.id.individualActorName);
-        EditText projectDescET = (EditText) findViewById(R.id.individualActorDescription);
-        projectNameET.setEnabled(!isEditing);
-        projectDescET.setEnabled(!isEditing);
+        EditText actorNameET = (EditText) findViewById(R.id.individualActorName);
+        EditText actorDescET = (EditText) findViewById(R.id.individualActorDescription);
+        actorNameET.setEnabled(!isEditing);
+        actorDescET.setEnabled(!isEditing);
 
         if(isEditing){
-            reference.child("actors").child(actorKey).child("name").setValue(projectNameET.getText().toString());
-            reference.child("actors").child(actorKey).child("description").setValue(projectDescET.getText().toString());
+            if(actorNameET.getText().toString().equals("") || actorDescET.getText().toString().equals("")){
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+                showingMenu.getItem(1).setVisible(!isEditing);
+                showingMenu.getItem(2).setVisible(!isEditing);
+                actorNameET.setEnabled(isEditing);
+                actorDescET.setEnabled(isEditing);
+                return;
+            }
+
+            reference.child("actors").child(actorKey).child("name").setValue(actorNameET.getText().toString());
+            reference.child("actors").child(actorKey).child("description").setValue(actorDescET.getText().toString());
+
+            ((Toolbar)findViewById(R.id.toolbar)).setTitle(actorNameET.getText().toString());
+
+            actorNameET.setBackgroundResource(android.R.color.transparent);
+            actorDescET.setBackgroundResource(android.R.color.transparent);
+        }
+        else{
+            actorNameET.setBackgroundResource(android.R.drawable.edit_text);
+            actorDescET.setBackgroundResource(android.R.drawable.edit_text);
         }
 
         isEditing = !isEditing;

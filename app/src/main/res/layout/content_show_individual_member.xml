@@ -8,78 +8,150 @@
     tools:context="com.example.nick.actortemplateapp.ShowIndividualMemberActivity"
     tools:showIn="@layout/activity_show_individual_member">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/showMember_image"
-            android:src="@drawable/default_member_photo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/showMember_ActorTextView"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"
+            android:background="@android:color/holo_green_light"
+            android:textAlignment="center"
+            android:text="Member belongs to Actor: "/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:id="@+id/showMember_image"
+                android:src="@drawable/default_member_photo"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black"
+                android:id="@+id/showMember_nameEditText"
+                android:textAlignment="center"
+                android:text="Full name of Member"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_image"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:id="@+id/showMember_emailTextView"
             android:text="Email"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_emailTextView"
-            android:id="@+id/showMember_emailEditText" />
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:id="@+id/showMember_emailEditText"
+            android:textAlignment="center"
+            android:text="Email of Member"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_emailEditText"
-            android:id="@+id/showMember_nameTextView"
-            android:text="Full name"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/showMember_nameTextView"
-            android:id="@+id/showMember_nameEditText" />
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_nameEditText"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:id="@+id/showMember_phoneTextView"
             android:text="Phone"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_phoneTextView"
-            android:id="@+id/showMember_phoneEditText" />
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:id="@+id/showMember_phoneEditText"
+            android:textAlignment="center"
+            android:text="Phone number of Member"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_phoneEditText"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:id="@+id/showMember_roleTextView"
             android:text="Role"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_roleTextView"
-            android:id="@+id/showMember_roleEditText" />
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
+            android:id="@+id/showMember_roleEditText"
+            android:textAlignment="center"
+            android:text="Role of Member"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_roleEditText"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:id="@+id/showMember_notesTextView"
             android:text="Notes"/>
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/showMember_notesTextView"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:gravity="top|center"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/black"
             android:id="@+id/showMember_notesEditText"
-            android:lines="5"/>
-    </RelativeLayout>
+            android:scrollbars="vertical"
+            android:text="Note of Member \nNote of Member \nAnother note of member"
+            android:textAlignment="center"
+            android:lines="4"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/holo_blue_light"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:text="Call Member"
+                android:onClick="callMember"
+                />
+            <Button
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/holo_blue_light"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:text="Email Member"
+                android:onClick="emailMember"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
